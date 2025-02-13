@@ -1,37 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function App() {
   const [clicked, setClicked] = useState(false);
+
+  useEffect(() => {
+    const audio = document.getElementById('valentine-audio');
+    audio.play();
+  }, []);
 
   const handleButtonClick = () => {
     setClicked(true);
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[#FFFBCA] text-gray-800 font-mono">
-      <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#5B913B] mb-4 text-center">
-        Hello Beautiful Hooman 💚
-      </h1>
-      <p className="text-lg sm:text-xl md:text-2xl text-center mb-6">
-        Welcome to this exclusive website, made just for you!
-      </p>
-
-      {!clicked ? (
-        <button
-          onClick={handleButtonClick}
-          className="px-4 sm:px-6 py-2 sm:py-3 text-md sm:text-lg font-semibold text-white bg-[#5B913B] rounded-lg shadow-md hover:bg-[#77B254] transition-all"
-        >
-          Click Me If You Like Me 🤍
-        </button>
-      ) : (
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#77B254] mt-6 text-center justify-center">
-          I KNEW IT! You like me! 💚 <br /> Let's grab coffee sometime? ☕
-        </h2>
-      )}
-
-      <footer className="mt-8 sm:mt-12 text-xs sm:text-sm text-gray-700">
-        Made by yours truly, Andrei 💚
-      </footer>
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-pink-100 to-red-100">
+      <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md mx-auto">
+        <audio id="valentine-audio" src="songsong.mp3" autoPlay loop></audio>
+        <div className="text-red-500 text-4xl animate-pulse mb-4 text-center">❤️</div>
+        <h1 className="text-2xl font-bold mb-2 text-red-600 text-center">Happy Valentine's Day!</h1>
+        <p className="text-gray-600 mb-4 italic">
+          You're beautiful as a flower. Palagi mong galingan! Sana matupad lahat ng pangarap at mga gusto mo. 
+          Wish you a day filled with love and happiness!🌸
+        </p>
+        <div className="flex justify-center">
+          <button
+            className="px-4 py-2 bg-red-500 text-white rounded-lg shadow hover:bg-red-600 transition"
+            id="love-btn"
+            onClick={handleButtonClick}
+          >
+            Click Me! 💌
+          </button>
+        </div>
+        {clicked && <img src="flow.jpg" id="flowers-img" className="mt-4" alt="Flowers" />}
+      </div>
     </div>
   );
 }
